@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-
-from app.utils.enums import BaseEnum
+from enum import Enum
 
 
 class BaseData:
@@ -24,8 +23,7 @@ class Pattern(BaseData):
 
 
 # default patterns
-@dataclass()
-class PresetPatterns(BaseEnum):
+class PresetPatterns(Enum):
     CONSTANT = Pattern(actions=[Wait(seconds=0.1), Intensity(left=0.8, right=0.8)])
     PULSE = Pattern(
         actions=[
