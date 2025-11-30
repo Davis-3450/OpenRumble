@@ -1,5 +1,6 @@
 import threading
 from abc import ABC, abstractmethod
+from typing import Optional
 
 from app.utils.enums import RumbleStatus
 
@@ -7,10 +8,10 @@ from app.utils.enums import RumbleStatus
 class BaseController(ABC):
     def __init__(self):
         """
-        Purpose: value
+        Purpose: base state and synchronization primitives
         """
-        self.status: RumbleStatus = RumbleStatus.STOPPED
-        self.thread: threading.Thread = None
+        self._status: RumbleStatus = RumbleStatus.STOPPED
+        self.thread: Optional[threading.Thread] = None
         self.stop_event = threading.Event()
         self.lock = threading.Lock()
 
@@ -41,3 +42,14 @@ class BaseController(ABC):
         Purpose: get the status of the controller
         """
         return self._status
+
+    @status.setter
+    def status(self, value: RumbleStatus) -> None:
+        self._status = value
+
+    @status.setter
+    def status(self, value: RumbleStatus) -> None:
+        """
+        Purpose: set the status of the controller
+        """
+        self._status = value
