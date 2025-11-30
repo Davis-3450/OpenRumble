@@ -1,4 +1,4 @@
-from app.controller.base.core import BaseController
+from app.controllers.base.core import BaseController
 
 
 class PS4Controller(BaseController):
